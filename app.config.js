@@ -3,14 +3,10 @@
 module.exports = ({ config }) => {
   return {
     ...config,
-    // Android Configuration
-    android: {
-      package: "com.smartshopping.app"
-    },
-    // Plugins array එක සම්පූර්ණයෙන් ඉවත් කර ඇත
+    // ... අනෙකුත් configuration
     extra: {
       eas: {
-        projectId: "ed9407ec-71fb-4969-98ec-3253b870b945"
+        // projectId: "ed9407ec-71fb-4969-98ec-3253b870b945"  <-- මෙය Delete කරන්න
       }
     }
   };
