@@ -7,21 +7,10 @@ module.exports = ({ config }) => {
     android: {
       package: "com.smartshopping.app"
     },
-    // AdMob Plugin Configuration
-    plugins: [
-      [
-        "expo-ads-google-mobile-ads",
-        {
-          "android": {
-            "applicationId": "ca-app-pub-2078544657145672986187"
-          }
-        }
-      ]
-    ],
-    // Extra Fields
+    // Plugins array එක සම්පූර්ණයෙන් ඉවත් කර ඇත
     extra: {
       eas: {
-        projectId: "ed9407ec-71fb-4969-98ec-3255b870b945"
+        projectId: "ed9407ec-71fb-4969-98ec-3253b870b945"
       }
     }
   };
