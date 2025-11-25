@@ -1,0 +1,14 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,  // <--- මෙතැනට පසු කමාවක් (,) නැතිනම්, එය TS1005 error එක දෙයි.
+    "baseUrl": ".",
+    "paths": {
+      // ඔබගේ paths මෙහි තිබිය යුතුය
+      "@/*": ["*"],
+      "@components/*": ["components/*"],
+      "@contexts/*": ["contexts/*"],
+      // ... අනෙකුත් paths
+    }
+  }
+}

@@ -1,0 +1,29 @@
+Expo/React Native-specific
+
+.expo/
+node_modules/
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+Mac
+
+.DS_Store
+
+Android
+
+/android/
+/ios/
+/web-build/
+
+IDE and environment files
+
+.vscode/
+.idea/
+.log
+
+Kotlin/Java specific daemon files (This is what caused the last error!)
+
+**/*.iml
+.gradle
+.local

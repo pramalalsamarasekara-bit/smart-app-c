@@ -1,0 +1,26 @@
+// This file is deprecated - language management is now handled by LanguageContext
+// Keeping this file to avoid import errors, but it's no longer used
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import languages, { Language } from '@/constants/languages';
+
+// Export a function to clear old language storage if needed
+export const clearLanguageStorage = async () => {
+  try {
+    // Clear old storage keys
+    await AsyncStorage.removeItem('language-storage');
+    await AsyncStorage.removeItem('i18n-language');
+    console.log('Old language storage cleared successfully');
+  } catch (error) {
+    console.warn('Error clearing old language storage:', error);
+  }
+};
+
+// Dummy export to maintain compatibility
+const useLanguageStore = () => ({
+  currentLanguage: languages.find(l => l.code === 'en') || languages[0],
+  setLanguage: () => {},
+  isHydrated: true,
+});
+
+export default useLanguageStore;

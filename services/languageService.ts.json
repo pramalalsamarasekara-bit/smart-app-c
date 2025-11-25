@@ -1,0 +1,79 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import i18n from '@/i18n';
+import { Language } from '@/constants/languages';
+import { Platform } from 'react-native';
+
+class LanguageService {
+  private static instance: LanguageService;
+  private listeners: ((language: Language) => void)[] = [];
+
+  static getInstance(): LanguageService {
+    if (!LanguageService.instance) {
+      LanguageService.instance = new LanguageService();
+    }
+    return LanguageService.instance;
+  }
+
+  async changeLanguage(language: Language): Promise<void> {
+    try {
+      // Update i18n first
+      await i18n.changeLanguage(language.code);
+      
+      // Store in both storage keys for compatibility
+      await AsyncStorage.setItem('app-language', language.code);
+      await AsyncStorage.setItem('i18n-language', language.code);
+      
+      // Force i18n to reload the language
+      if (i18n.language !== language.code) {
+        await i18n.changeLanguage(language.code);
+      }
+      
+      // Notify all listeners
+      this.notifyListeners(language);
+      
+      // Add extra delay for Android to ensure UI updates
+      if (Platform.OS === 'android') {
+        await new Promise(resolve => setTimeout(resolve, 200));
+        // Force another i18n update for Android
+        await i18n.changeLanguage(language.code);
+        this.notifyListeners(language);
+      }
+    } catch (error) {
+      console.warn('Language change failed:', error);
+      throw error;
+    }
+  }
+
+  addListener(callback: (language: Language) => void): () => void {
+    this.listeners.push(callback);
+    
+    // Return unsubscribe function
+    return () => {
+      const index = this.listeners.indexOf(callback);
+      if (index > -1) {
+        this.listeners.splice(index, 1);
+      }
+    };
+  }
+
+  private notifyListeners(language: Language): void {
+    this.listeners.forEach(listener => {
+      try {
+        listener(language);
+      } catch (error) {
+        console.warn('Language listener error:', error);
+      }
+    });
+  }
+
+  async getCurrentLanguageCode(): Promise<string> {
+    try {
+      const stored = await AsyncStorage.getItem('app-language');
+      return stored || 'en';
+    } catch (error) {
+      return 'en';
+    }
+  }
+}
+
+export default LanguageService.getInstance();
