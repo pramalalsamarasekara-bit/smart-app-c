@@ -2,12 +2,13 @@
 
 module.exports = ({ config }) => {
   return {
-    // ... අනෙකුත් configuration
-    extra: {
-      eas: {
-        // අලුතින් ලැබුණු Project ID එක ඇතුළත් කරන්න
-        "projectId": "c9cc6606-8947-41bc-8472-1aba013c7cc3"
-      }
-    }
+    ...config,
+    name: "smartshopping-clean",
+    slug: "smartshopping-clean",
+    version: "1.0.0",
+    android: {
+      package: "com.smartshopping.app"
+    },
+    // වෙනත් සියලුම plugins සහ extra fields ඉවත් කරන්න
   };
 };
