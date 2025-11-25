@@ -2,11 +2,11 @@
 
 module.exports = ({ config }) => {
   return {
-    ...config,
     // ... අනෙකුත් configuration
     extra: {
       eas: {
-        // projectId: "ed9407ec-71fb-4969-98ec-3253b870b945"  <-- මෙය Delete කරන්න
+        // අලුතින් ලැබුණු Project ID එක ඇතුළත් කරන්න
+        "projectId": "c9cc6606-8947-41bc-8472-1aba013c7cc3"
       }
     }
   };
