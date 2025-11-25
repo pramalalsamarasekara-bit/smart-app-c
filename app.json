@@ -27,6 +27,17 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    // මෙතැනින් AdMob Plugin Configuration එක ආරම්භ වේ
+    "plugins": [
+      [
+        "expo-ads-google-mobile-ads",
+        {
+          "android": {
+            "applicationId": "ca-app-pub-2078544657145672986187"
+          }
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "ed9407ec-71fb-4969-98ec-3255b870b945"
